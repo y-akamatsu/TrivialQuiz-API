@@ -1,0 +1,47 @@
+body {
+    font-size: 14px;
+    font-family: Verdana, sans-serif;
+}
+
+.container {
+    width: 500px;
+    margin: 10px auto;
+}
+
+#mondai {
+    text-align: center;
+    background: #cce5ff;
+    color: #004085;
+    height: 50px;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#answers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#answers > li {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#answers > li:hover {
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+#btn {
+    cursor: pointer;
+    background-color: #33FF99;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 3px #33CC66;
+}
