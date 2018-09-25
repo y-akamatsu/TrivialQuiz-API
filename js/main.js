@@ -3,7 +3,7 @@ const answerElementA =document.getElementById("answer_a");
 const answerElementB =document.getElementById("answer_b");
 const nextButton = document.getElementById("btn");
 
-//変数const 再代入不可。let　再代入可能
+//変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
 //1件目のデータを問題に使う
 let currentQuestionIndex = 0;
