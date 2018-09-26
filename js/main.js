@@ -11,21 +11,21 @@ let currentQuestionIndex = 0;
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
 function setQuestion(){
-if (results.length <= currentQuestionIndex){
-  alert('出題できる問題がありません。');
-  return;
-}
+  if (results.length <= currentQuestionIndex){
+    alert('出題できる問題がありません。');
+    return;
+  }
 
-const currentQuestionData = results[currentQuestionIndex];
-console.log(currentQuestionData);
+  const currentQuestionData = results[currentQuestionIndex];
+  console.log(currentQuestionData);
 
-//innnerTextは中身を書き換える
-// innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
+  //innnerTextは中身を書き換える
+  // innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
 
-questionElement.innerHTML = currentQuestionData.question;
+  questionElement.innerHTML = currentQuestionData.question;
 
-answerElementA.innerHTML = currentQuestionData.correct_answer;
-answerElementB.innerHTML = currentQuestionData.incorrect_answers[0];
+  answerElementA.innerHTML = currentQuestionData.correct_answer;
+  answerElementB.innerHTML = currentQuestionData.incorrect_answers[0];
 }
 
 function selectAnswer (event) {
