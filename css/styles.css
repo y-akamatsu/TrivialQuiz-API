@@ -38,10 +38,21 @@ body {
 
 #btn {
     cursor: pointer;
-    background-color: #33FF99;
+    background-color: #008000;
     border-radius: 4px;
     padding: 10px;
     text-align: center;
     color: #fff;
-    box-shadow: 0 3px #33CC66;
+    box-shadow: 0 3px #006633;
+    opacity: 0.9;
+}
+
+#btn:hover {
+    opacity: 1;
+}
+
+#btn:active {
+   animation: small 1s; 
+   padding: 12px;
+   box-shadow: 0 2px 0 #006633;
 }
