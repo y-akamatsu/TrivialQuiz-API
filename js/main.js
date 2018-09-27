@@ -21,16 +21,20 @@ function setQuestion(){
   const currentQuestionData = results[currentQuestionIndex];
   console.log(currentQuestionData);
 
-  //innnerTextは中身を書き換える
-  // innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
+  //innerTextは中身を書き換える
+  //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
 
   questionElement.innerHTML = currentQuestionData.question;
-
-  answerElementA.innerHTML = currentQuestionData.correct_answer;
-  answerElementB.innerHTML = currentQuestionData.incorrect_answers[0];
-  answerElementC.innerHTML = currentQuestionData.incorrect_answers[1];
-  answerElementD.innerHTML = currentQuestionData.incorrect_answers[2];
-
+  const answers =[
+    currentQuestionData.correct_answer,
+    currentQuestionData.incorrect_answers[0],
+    currentQuestionData.incorrect_answers[1],
+    currentQuestionData.incorrect_answers[2]
+  ];
+  answerElementA.innerHTML = answers[Math.floor(Math.random() * answers.length)];
+  answerElementB.innerHTML = answers[Math.floor(Math.random() * answers.length)];
+  answerElementC.innerHTML = answers[Math.floor(Math.random() * answers.length)];
+  answerElementD.innerHTML = answers[Math.floor(Math.random() * answers.length)];
 }
 
 function selectAnswer (event) {
@@ -43,6 +47,7 @@ function selectAnswer (event) {
   }
 }
 //変数.addEventListener('イベント名', 関数);
+
 answerElementA.addEventListener('click', selectAnswer);
 answerElementB.addEventListener('click', selectAnswer);
 answerElementC.addEventListener('click', selectAnswer);
@@ -59,6 +64,7 @@ window.addEventListener('load', () =>{
     return response.json();
     })
     .then(function(json){
+    console.log('data:',json);
     currentQuestionIndex = 0;
     results = json.results;
     setQuestion();
