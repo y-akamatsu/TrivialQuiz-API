@@ -1,6 +1,8 @@
 const questionElement = document.getElementById("mondai");
 const answerElementA =document.getElementById("answer_a");
 const answerElementB =document.getElementById("answer_b");
+const answerElementC =document.getElementById("answer_c");
+const answerElementD =document.getElementById("answer_d");
 const nextButton = document.getElementById("btn");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
@@ -26,6 +28,9 @@ function setQuestion(){
 
   answerElementA.innerHTML = currentQuestionData.correct_answer;
   answerElementB.innerHTML = currentQuestionData.incorrect_answers[0];
+  answerElementC.innerHTML = currentQuestionData.incorrect_answers[1];
+  answerElementD.innerHTML = currentQuestionData.incorrect_answers[2];
+
 }
 
 function selectAnswer (event) {
@@ -40,6 +45,8 @@ function selectAnswer (event) {
 //変数.addEventListener('イベント名', 関数);
 answerElementA.addEventListener('click', selectAnswer);
 answerElementB.addEventListener('click', selectAnswer);
+answerElementC.addEventListener('click', selectAnswer);
+answerElementD.addEventListener('click', selectAnswer);
 nextButton.addEventListener('click', () => {
   //次の問題へ
   currentQuestionIndex++;
@@ -47,7 +54,7 @@ nextButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () =>{
-  fetch('https://opentdb.com/api.php?amount=10')
+  fetch('https://opentdb.com/api.php?amount=10&type=multiple')
   .then(function(response){
     return response.json();
     })
