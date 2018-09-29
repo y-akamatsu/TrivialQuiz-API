@@ -25,17 +25,32 @@ function setQuestion(){
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
 
   questionElement.innerHTML = currentQuestionData.question;
-  const answers =[
+
+  
+  const answers = [
     currentQuestionData.correct_answer,
     currentQuestionData.incorrect_answers[0],
     currentQuestionData.incorrect_answers[1],
     currentQuestionData.incorrect_answers[2]
   ];
-  answerElementA.innerHTML = answers[Math.floor(Math.random() * answers.length)];
-  answerElementB.innerHTML = answers[Math.floor(Math.random() * answers.length)];
-  answerElementC.innerHTML = answers[Math.floor(Math.random() * answers.length)];
-  answerElementD.innerHTML = answers[Math.floor(Math.random() * answers.length)];
+//Fisher–Yates法を使ったシャッフル関数を作成
+function arrShuffle(answers){
+  //lengthにanswersの配列の数を代入
+  for (length = answers.length, i = length - 1; i > 0; i--) {
+    //引数として与えた値の乱数の生成
+    j = Math.floor(Math.random() * (i + 1));
+    tmp = answers[i];
+    answers[i] = answers[j];
+    answers[j] = tmp;
+  }
 }
+arrShuffle(answers);
+
+  answerElementA.innerHTML = answers[0];  
+  answerElementB.innerHTML = answers[1]; 
+  answerElementC.innerHTML = answers[2]; 
+  answerElementD.innerHTML = answers[3]; 
+  }
 
 function selectAnswer (event) {
   const answer = event.target.innerText;
@@ -64,9 +79,9 @@ window.addEventListener('load', () =>{
     return response.json();
     })
     .then(function(json){
-    console.log('data:',json);
-    currentQuestionIndex = 0;
-    results = json.results;
-    setQuestion();
-  });
+      console.log('data:',json);
+      currentQuestionIndex = 0;
+      results = json.results;
+      setQuestion();
+    });
 });
