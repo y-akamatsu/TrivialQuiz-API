@@ -23,17 +23,17 @@ function setQuestion(){
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
   questionElement.innerHTML = currentQuestionData.question;
   const answers = [
-  currentQuestionData.correct_answer,
-  currentQuestionData.incorrect_answers[0],
-  currentQuestionData.incorrect_answers[1],
-  currentQuestionData.incorrect_answers[2],
+    currentQuestionData.correct_answer,
+    currentQuestionData.incorrect_answers[0],
+    currentQuestionData.incorrect_answers[1],
+    currentQuestionData.incorrect_answers[2],
   ];
 
   const shuffledAnswers = arrShuffle(answers);
-  answerElementA.innerHTML = shuffledAnswers[0];
-  answerElementB.innerHTML = shuffledAnswers[1];
-  answerElementC.innerHTML = shuffledAnswers[2];
-  answerElementD.innerHTML = shuffledAnswers[3];
+    answerElementA.innerHTML = shuffledAnswers[0];
+    answerElementB.innerHTML = shuffledAnswers[1];
+    answerElementC.innerHTML = shuffledAnswers[2];
+    answerElementD.innerHTML = shuffledAnswers[3];
 }
 
 function arrShuffle(answers){
@@ -47,8 +47,8 @@ function arrShuffle(answers){
     tmp = copiedAnswers[i];
     copiedAnswers[i] = copiedAnswers[j];
     copiedAnswers[j] = tmp;
-    return copiedAnswers;
   }
+  return copiedAnswers;
 }
 
 function selectAnswer (event) {
