@@ -17,40 +17,39 @@ function setQuestion(){
     alert('出題できる問題がありません。');
     return;
   }
-
   const currentQuestionData = results[currentQuestionIndex];
   console.log(currentQuestionData);
-
   //innerTextは中身を書き換える
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
-
   questionElement.innerHTML = currentQuestionData.question;
-
-  
   const answers = [
-    currentQuestionData.correct_answer,
-    currentQuestionData.incorrect_answers[0],
-    currentQuestionData.incorrect_answers[1],
-    currentQuestionData.incorrect_answers[2]
+  currentQuestionData.correct_answer,
+  currentQuestionData.incorrect_answers[0],
+  currentQuestionData.incorrect_answers[1],
+  currentQuestionData.incorrect_answers[2],
   ];
-//Fisher–Yates法を使ったシャッフル関数を作成
+
+  const shuffledAnswers = arrShuffle(answers);
+  answerElementA.innerHTML = shuffledAnswers[0];
+  answerElementB.innerHTML = shuffledAnswers[1];
+  answerElementC.innerHTML = shuffledAnswers[2];
+  answerElementD.innerHTML = shuffledAnswers[3];
+}
+
 function arrShuffle(answers){
+  const copiedAnswers = answers.slice();
+  //事前にletを使って変数宣言
+  let length, i, j, tmp;
   //lengthにanswersの配列の数を代入
-  for (length = answers.length, i = length - 1; i > 0; i--) {
+  for (length = copiedAnswers.length, i = length - 1; i > 0; i--) {
     //引数として与えた値の乱数の生成
     j = Math.floor(Math.random() * (i + 1));
-    tmp = answers[i];
-    answers[i] = answers[j];
-    answers[j] = tmp;
+    tmp = copiedAnswers[i];
+    copiedAnswers[i] = copiedAnswers[j];
+    copiedAnswers[j] = tmp;
+    return copiedAnswers;
   }
 }
-arrShuffle(answers);
-
-  answerElementA.innerHTML = answers[0];  
-  answerElementB.innerHTML = answers[1]; 
-  answerElementC.innerHTML = answers[2]; 
-  answerElementD.innerHTML = answers[3]; 
-  }
 
 function selectAnswer (event) {
   const answer = event.target.innerText;
@@ -68,7 +67,7 @@ answerElementB.addEventListener('click', selectAnswer);
 answerElementC.addEventListener('click', selectAnswer);
 answerElementD.addEventListener('click', selectAnswer);
 nextButton.addEventListener('click', () => {
-  //次の問題へ
+//次の問題へ
   currentQuestionIndex++;
   setQuestion();
 });
