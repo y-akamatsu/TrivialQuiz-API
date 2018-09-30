@@ -3,8 +3,8 @@ const answerElementA =document.getElementById("answer_a");
 const answerElementB =document.getElementById("answer_b");
 const answerElementC =document.getElementById("answer_c");
 const answerElementD =document.getElementById("answer_d");
-const nextButton = document.getElementById("btn");
-const resetButton = document.getElementById('reset');
+const nextButton =document.getElementById("btn");
+const resetButton =document.getElementById('reset');
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
@@ -87,6 +87,8 @@ function resetQuestion (){
     });
 }
 
+
+
 //変数.addEventListener('イベント名', 関数);
 answerElementA.addEventListener('click', selectAnswer);
 answerElementB.addEventListener('click', selectAnswer);
@@ -99,16 +101,6 @@ nextButton.addEventListener('click', () => {
 });
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
 resetButton.addEventListener('click',resetQuestion);
-
 window.addEventListener('load', () =>{
-  fetch('https://opentdb.com/api.php?amount=10&type=multiple')
-  .then(function(response){
-    return response.json();
-    })
-    .then(function(json){
-      console.log('data:',json);
-      currentQuestionIndex = 0;
-      results = json.results;
-      setQuestion();
-    });
+   resetQuestion();
 });
