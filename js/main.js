@@ -72,8 +72,8 @@ function selectAnswer (event) {
     alert('不正解！');
   }
 }
-//resetQuestion関数
-//定義fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
+//resetQuestion関数定義
+//fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
 function resetQuestion (){
   fetch('https://opentdb.com/api.php?amount=10&type=multiple')
   .then(function(response){
