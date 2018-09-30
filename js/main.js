@@ -79,12 +79,12 @@ function resetQuestion (){
   .then(function(response){
     return response.json();
     })
-    .then(function(json){
-      console.log('data:',json);
-      currentQuestionIndex = 0;
-      results = json.results;
-      setQuestion();
-    });
+  .then(function(json){
+    console.log('data:',json);
+    currentQuestionIndex = 0;
+    results = json.results;
+    setQuestion();
+  });
 }
 
 
