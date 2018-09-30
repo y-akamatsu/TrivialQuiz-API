@@ -4,6 +4,7 @@ const answerElementB =document.getElementById("answer_b");
 const answerElementC =document.getElementById("answer_c");
 const answerElementD =document.getElementById("answer_d");
 const nextButton = document.getElementById("btn");
+const resetButton = document.getElementById('reset');
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
@@ -37,15 +38,26 @@ function setQuestion(){
 }
 
 function arrShuffle(answers){
+  //配列(answers)はオブジェクトになるため引数で渡す場合参照渡しになる。
+  //参照渡しの場合、関数の引数の値arrshuffle(answers)を変更すると関数実行時に引数として渡した値（オブジェクト）も変更になる。
+  //それを防ぐために.slice()メソッドを使い引数として渡ってきた配列のコピーを作成しコピーを変更することで、元の値の変更を防ぐ。
   const copiedAnswers = answers.slice();
-  //事前にletを使って変数宣言
+  //事前にletを使って変数宣言、この変数は関数内のみ使える。（カプセル化、プライべート変数化する）
   let length, i, j, tmp;
-  //lengthにanswersの配列の数を代入
+  //length => 4(copiedAnswers.length)
+  //i => 3(4 - 1)
+  // ループ毎にi変数の値は3→2→1と減りループが3回で終了
   for (length = copiedAnswers.length, i = length - 1; i > 0; i--) {
-    //引数として与えた値の乱数の生成
+    //Math.floor() => 引数の数値の小数点以下を切り捨てる。例：Math.floor(3.5) => 3
+    //Math.random() => 0以上～1未満のランダムな値を返す。
+    //Math.random() * ( i + 1)は最大でも4未満となる。
     j = Math.floor(Math.random() * (i + 1));
+    //以下バブルソートアルゴリズムにて配列内の値を入れ替える
+    //配列要素i番目の値をtmp変数に一時的に格納
     tmp = copiedAnswers[i];
+    //copiedAnswers配列の中のj番目の値をcopiedAnswers配列のi番目に代入する
     copiedAnswers[i] = copiedAnswers[j];
+    //answers配列のj番目に一時的に格納していたanswerws[i]の値を格納する
     copiedAnswers[j] = tmp;
   }
   return copiedAnswers;
@@ -60,8 +72,22 @@ function selectAnswer (event) {
     alert('不正解！');
   }
 }
-//変数.addEventListener('イベント名', 関数);
+//resetQuestion関数
+//定義fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
+function resetQuestion (){
+  fetch('https://opentdb.com/api.php?amount=10&type=multiple')
+  .then(function(response){
+    return response.json();
+    })
+    .then(function(json){
+      console.log('data:',json);
+      currentQuestionIndex = 0;
+      results = json.results;
+      setQuestion();
+    });
+}
 
+//変数.addEventListener('イベント名', 関数);
 answerElementA.addEventListener('click', selectAnswer);
 answerElementB.addEventListener('click', selectAnswer);
 answerElementC.addEventListener('click', selectAnswer);
@@ -71,6 +97,8 @@ nextButton.addEventListener('click', () => {
   currentQuestionIndex++;
   setQuestion();
 });
+//addEventListenerのクリックアクションでresetQuestionを呼び出す。
+resetButton.addEventListener('click',resetQuestion);
 
 window.addEventListener('load', () =>{
   fetch('https://opentdb.com/api.php?amount=10&type=multiple')

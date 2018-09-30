@@ -36,7 +36,7 @@ body {
     background-color: #f8f8f8;
 }
 
-#btn {
+.btn_a {
     cursor: pointer;
     background-color: #008000;
     border-radius: 4px;
@@ -47,12 +47,31 @@ body {
     opacity: 0.9;
 }
 
-#btn:hover {
+.btn_b {
+    cursor: pointer;
+    background-color: #0a66cf;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 3px #1900a5;
+    opacity: 0.9;
+}
+
+.btn_a:hover {
     opacity: 1;
 }
 
-#btn:active {
-   animation: small 1s; 
-   padding: 12px;
-   box-shadow: 0 2px 0 #006633;
+.btn_b:hover {
+    opacity: 1;
 }
+
+.btn_a:active {
+    animation: small 1s; 
+    box-shadow: 0 2px 0 #006633;
+}
+
+.btn_b:active {
+    animation: small 1s; 
+    box-shadow: 0 2px 0 #1900a5;
+ }
