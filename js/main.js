@@ -20,13 +20,15 @@ function setQuestion(){
   const answers =[];
   answers.push(questionData.correct_answer);
   questionData.incorrect_answers.forEach(incorrect_answer => {
-    answers.push(incorrect_answer);
+  answers.push(incorrect_answer);
   });
   console.log(currentQuestionIndex);
+  arrShuffle(answers);
   //innerTextは中身を書き換える
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
   questionElement.innerHTML = questionData.question;
-  answers.forEach(answer => {
+  answersElement.innerHTML = ''
+  arrShuffle(answers).forEach(answer => {
     const liElement = document.createElement('li');
     answersElement.appendChild(liElement);
     liElement.innerHTML = answer;
@@ -85,7 +87,6 @@ function resetQuestion (){
 }
 
 //変数.addEventListener('イベント名', 関数);
-answersElement.addEventListener('click', selectAnswer);
 nextButton.addEventListener('click', () => {
   //次の問題へ
   currentQuestionIndex++;
