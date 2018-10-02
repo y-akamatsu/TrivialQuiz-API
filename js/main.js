@@ -1,8 +1,5 @@
 const questionElement = document.getElementById("mondai");
-const answerElementA =document.getElementById("answer_a");
-const answerElementB =document.getElementById("answer_b");
-const answerElementC =document.getElementById("answer_c");
-const answerElementD =document.getElementById("answer_d");
+const answersElement = document.getElementById('answers');
 const nextButton =document.getElementById("btn");
 const resetButton =document.getElementById('reset');
 
@@ -18,23 +15,25 @@ function setQuestion(){
     alert('出題できる問題がありません。');
     return;
   }
-  const currentQuestionData = results[currentQuestionIndex];
-  console.log(currentQuestionData);
+  const questionData = results[currentQuestionIndex];
+  console.log(questionData);
+  const answers =[];
+  answers.push(questionData.correct_answer);
+  questionData.incorrect_answers.forEach(incorrect_answer => {
+  answers.push(incorrect_answer);
+  });
+  console.log(currentQuestionIndex);
+  arrShuffle(answers);
   //innerTextは中身を書き換える
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
-  questionElement.innerHTML = currentQuestionData.question;
-  const answers = [
-    currentQuestionData.correct_answer,
-    currentQuestionData.incorrect_answers[0],
-    currentQuestionData.incorrect_answers[1],
-    currentQuestionData.incorrect_answers[2],
-  ];
-
-  const shuffledAnswers = arrShuffle(answers);
-    answerElementA.innerHTML = shuffledAnswers[0];
-    answerElementB.innerHTML = shuffledAnswers[1];
-    answerElementC.innerHTML = shuffledAnswers[2];
-    answerElementD.innerHTML = shuffledAnswers[3];
+  questionElement.innerHTML = questionData.question;
+  answersElement.innerHTML = ''
+  arrShuffle(answers).forEach(answer => {
+    const liElement = document.createElement('li');
+    answersElement.appendChild(liElement);
+    liElement.innerHTML = answer;
+    liElement.addEventListener('click', selectAnswer);
+  });
 }
 
 function arrShuffle(answers){
@@ -65,8 +64,8 @@ function arrShuffle(answers){
 
 function selectAnswer (event) {
   const answer = event.target.innerText;
-  const currentQuestionData = results[currentQuestionIndex];
-  if (answer === currentQuestionData.correct_answer){
+  const questionData = results[currentQuestionIndex];
+  if (answer === questionData.correct_answer){
     alert('正解！');
   } else {
     alert('不正解！');
@@ -75,10 +74,10 @@ function selectAnswer (event) {
 //resetQuestion関数定義
 //fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
 function resetQuestion (){
-  fetch('https://opentdb.com/api.php?amount=10&type=multiple')
+  fetch('https://opentdb.com/api.php?amount=10')
   .then(function(response){
     return response.json();
-    })
+  })
   .then(function(json){
     console.log('data:',json);
     currentQuestionIndex = 0;
@@ -87,15 +86,9 @@ function resetQuestion (){
   });
 }
 
-
-
 //変数.addEventListener('イベント名', 関数);
-answerElementA.addEventListener('click', selectAnswer);
-answerElementB.addEventListener('click', selectAnswer);
-answerElementC.addEventListener('click', selectAnswer);
-answerElementD.addEventListener('click', selectAnswer);
 nextButton.addEventListener('click', () => {
-//次の問題へ
+  //次の問題へ
   currentQuestionIndex++;
   setQuestion();
 });
