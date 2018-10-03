@@ -1,7 +1,7 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
-const nextButton =document.getElementById("btn");
-const resetButton =document.getElementById('reset');
+const nextButton = document.getElementById("btn");
+const resetButton = document.getElementById('reset');
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
@@ -10,16 +10,16 @@ let currentQuestionIndex = 0;
 
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
-function setQuestion(){
-  if (results.length <= currentQuestionIndex){
+function setQuestion() {
+  if (results.length <= currentQuestionIndex) {
     alert('出題できる問題がありません。');
     return;
   }
   const questionData = results[currentQuestionIndex];
-  const answers =[];
+  const answers = [];
   answers.push(questionData.correct_answer);
   questionData.incorrect_answers.forEach(incorrect_answer => {
-  answers.push(incorrect_answer);
+    answers.push(incorrect_answer);
   });
   //innerTextは中身を書き換える
   //innerTextだと「""」や「''」が変な文字に変換されるためinnerHTMLを使うようにした
@@ -33,7 +33,7 @@ function setQuestion(){
   });
 }
 
-function arrShuffle(answers){
+function arrShuffle(answers) {
   //配列(answers)はオブジェクトになるため引数で渡す場合参照渡しになる。
   //参照渡しの場合、関数の引数の値arrshuffle(answers)を変更すると関数実行時に引数として渡した値（オブジェクト）も変更になる。
   //それを防ぐために.slice()メソッドを使い引数として渡ってきた配列のコピーを作成しコピーを変更することで、元の値の変更を防ぐ。
@@ -59,10 +59,10 @@ function arrShuffle(answers){
   return copiedAnswers;
 }
 
-function selectAnswer (event) {
+function selectAnswer(event) {
   const answer = event.target.innerText;
   const questionData = results[currentQuestionIndex];
-  if (answer === questionData.correct_answer){
+  if (answer === questionData.correct_answer) {
     alert('正解！');
   } else {
     alert('不正解！');
@@ -70,17 +70,17 @@ function selectAnswer (event) {
 }
 //resetQuestion関数定義
 //fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
-function resetQuestion (){
+function resetQuestion() {
   fetch('https://opentdb.com/api.php?amount=10')
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(json){
-    console.log('data:',json);
-    currentQuestionIndex = 0;
-    results = json.results;
-    setQuestion();
-  });
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      console.log('data:', json);
+      currentQuestionIndex = 0;
+      results = json.results;
+      setQuestion();
+    });
 }
 
 //変数.addEventListener('イベント名', 関数);
@@ -90,7 +90,7 @@ nextButton.addEventListener('click', () => {
   setQuestion();
 });
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
-resetButton.addEventListener('click',resetQuestion);
-window.addEventListener('load', () =>{
-   resetQuestion();
+resetButton.addEventListener('click', resetQuestion);
+window.addEventListener('load', () => {
+  resetQuestion();
 });

@@ -80,16 +80,11 @@ body {
     animation: small 1s; 
     box-shadow: 0 2px 0 #3f20ee;
  }
- .text{
+ 
+.text{
      text-align: center;
  }
- .startbutton {
-    cursor: pointer;
-    background-color: #fc2b0f;
-    border-radius: 4px;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 3px #7c0404;
-    opacity: 0.9;
+
+.img{
+    margin-bottom: 10px;
 }
