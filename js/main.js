@@ -67,6 +67,9 @@ function selectAnswer(event) {
   } else {
     alert('不正解！');
   }
+  //次の問題へ
+  currentQuestionIndex++;
+  setQuestion();
 }
 //resetQuestion関数定義
 //fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする

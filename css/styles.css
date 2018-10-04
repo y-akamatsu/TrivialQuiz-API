@@ -65,6 +65,17 @@ body {
 }
 
 .btn_c {
+    cursor: pointer;
+    background-color: #f58709;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 3px #8f5305;
+    opacity: 0.9;
+}
+
+.btn_d {
     display:block;
     width: 480px;
     cursor: pointer;
@@ -80,12 +91,13 @@ body {
 .btn_a:hover {
     opacity: 1;
 }
-
 .btn_b:hover {
     opacity: 1;
 }
-
 .btn_c:hover {
+    opacity: 1;
+}
+.btn_d:hover {
     opacity: 1;
 }
 
@@ -101,12 +113,14 @@ body {
 
  .btn_c:active {
     animation: small 1s; 
-    box-shadow: 0 2px 0 #929407;
+    box-shadow: 0 3px;
+    box-shadow: 0 2px 0 #8f5305;
  }
 
-p{
-    text-align: center;
-}
+ .btn_d:active {
+    animation: small 1s; 
+    box-shadow: 0 2px 0 #929407;
+ }
 
 .start{
     display:block;
