@@ -1,18 +1,21 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
 const nextButton = document.getElementById("btn");
-const resetButton = document.getElementById('reset');
+const resetButton = document.getElementById("reset");
+const resultAnswer = document.getElementById("result");
+const checkAnswer = document.getElementById("check");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
 //1件目のデータを問題に使う
 let currentQuestionIndex = 0;
+let numCorrect = 0;
 
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
 function setQuestion() {
   if (results.length <= currentQuestionIndex) {
-    alert('出題できる問題がありません。');
+    resultQuestion();
     return;
   }
   const questionData = results[currentQuestionIndex];
@@ -63,6 +66,7 @@ function selectAnswer(event) {
   const answer = event.target.innerText;
   const questionData = results[currentQuestionIndex];
   if (answer === questionData.correct_answer) {
+    numCorrect++;
     alert('正解！');
   } else {
     alert('不正解！');
@@ -86,12 +90,20 @@ function resetQuestion() {
     });
 }
 
+function resultQuestion() {
+  resultAnswer.innerHTML = `${results.length}問中、${numCorrect}問正解しました！`;
+}
+
 //変数.addEventListener('イベント名', 関数);
 nextButton.addEventListener('click', () => {
   //次の問題へ
   currentQuestionIndex++;
   setQuestion();
 });
+checkAnswer.addEventListener('click', () => {
+  resultQuestion();
+})
+
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
 resetButton.addEventListener('click', resetQuestion);
 window.addEventListener('load', () => {

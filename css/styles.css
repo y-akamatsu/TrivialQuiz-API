@@ -1,7 +1,7 @@
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #9d9eaa;
+    background-color: #858080;
 }
 .index{
     color: red;
@@ -50,7 +50,7 @@ body {
     text-align: center;
     color: #fff;
     box-shadow: 0 3px #006633;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .btn_b {
@@ -61,7 +61,7 @@ body {
     text-align: center;
     color: #fff;
     box-shadow: 0 3px #3f20ee;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .btn_c {
@@ -72,7 +72,7 @@ body {
     text-align: center;
     color: #fff;
     box-shadow: 0 3px #8f5305;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .btn_d {
@@ -85,7 +85,7 @@ body {
     text-align: center;
     color: #fff;
     box-shadow: 0 3px #929407;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .btn_a:hover {
