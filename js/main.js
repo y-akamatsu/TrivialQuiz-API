@@ -1,18 +1,21 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
-const nextButton = document.getElementById("btn");
-const resetButton = document.getElementById('reset');
+const resultAnswer = document.getElementById("result");
+const resetButton = document.getElementById("reset");
+resetButton.style.display = "none";
+const questionNumber = document.getElementById("question_number");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
 //1件目のデータを問題に使う
 let currentQuestionIndex = 0;
-
+let numCorrect = 0;
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
 function setQuestion() {
   if (results.length <= currentQuestionIndex) {
-    alert('出題できる問題がありません。');
+    alert('check the answers');
+    resultQuestion();
     return;
   }
   const questionData = results[currentQuestionIndex];
@@ -31,6 +34,9 @@ function setQuestion() {
     liElement.innerHTML = answer;
     liElement.addEventListener('click', selectAnswer);
   });
+  const numQuestion = currentQuestionIndex + 1;
+  questionNumber.innerHTML = `Question No.${numQuestion}`;
+
 }
 
 function arrShuffle(answers) {
@@ -63,10 +69,14 @@ function selectAnswer(event) {
   const answer = event.target.innerText;
   const questionData = results[currentQuestionIndex];
   if (answer === questionData.correct_answer) {
-    alert('正解！');
+    numCorrect++;
+    alert('correct!');
   } else {
-    alert('不正解！');
+    alert('incorrect!');
   }
+  //次の問題へ
+  currentQuestionIndex++;
+  setQuestion();
 }
 //resetQuestion関数定義
 //fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
@@ -78,19 +88,23 @@ function resetQuestion() {
     .then(function (json) {
       console.log('data:', json);
       currentQuestionIndex = 0;
+      numCorrect = 0;
+      resultAnswer.innerHTML = "";
       results = json.results;
+      resetButton.style.display = "none";
       setQuestion();
     });
 }
 
+function resultQuestion() {
+  resultAnswer.innerHTML = `you had ${numCorrect} correct answers out of ${results.length} questions`;
+  resetButton.style.display = "block";
+}
 //変数.addEventListener('イベント名', 関数);
-nextButton.addEventListener('click', () => {
-  //次の問題へ
-  currentQuestionIndex++;
-  setQuestion();
-});
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
 resetButton.addEventListener('click', resetQuestion);
 window.addEventListener('load', () => {
   resetQuestion();
 });
+
+
