@@ -1,7 +1,8 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
 const resultAnswer = document.getElementById("result");
-const resetButton = document.getElementById("reset").style.display = "none";
+const resetButton = document.getElementById("reset");
+resetButton.style.display = "none";
 const questionNumber = document.getElementById("question_number");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
@@ -90,18 +91,18 @@ function resetQuestion() {
       numCorrect = 0;
       resultAnswer.innerHTML = "";
       results = json.results;
-      document.getElementById("reset").style.display = "none";
+      resetButton.style.display = "none";
       setQuestion();
     });
 }
 
 function resultQuestion() {
   resultAnswer.innerHTML = `you had ${numCorrect} correct answers out of ${results.length} questions`;
-  document.getElementById("reset").style.display = "block";
-  document.getElementById("reset").addEventListener('click', resetQuestion);
+  resetButton.style.display = "block";
 }
 //変数.addEventListener('イベント名', 関数);
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
+resetButton.addEventListener('click', resetQuestion);
 window.addEventListener('load', () => {
   resetQuestion();
 });
