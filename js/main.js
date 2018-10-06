@@ -90,6 +90,7 @@ function resetQuestion() {
       numCorrect = 0;
       resultAnswer.innerHTML = "";
       results = json.results;
+      document.getElementById("reset").style.display = "none";
       setQuestion();
     });
 }

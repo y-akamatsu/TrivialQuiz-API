@@ -1,7 +1,7 @@
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #858080;
+    background-color: #8c9499;
 }
 .index{
     color: red;
@@ -21,7 +21,7 @@ body {
 
 #mondai {
     text-align: center;
-    background: #cce5ff;
+    background: #a4ddee;
     color: #004085;
     height: 50px;
     border-radius: 4px;
@@ -54,14 +54,16 @@ body {
 }
 
 .btn_b {
+    display:block;
+    width: 480px;
     cursor: pointer;
-    background-color: #0940f5;
+    background-color: #0e41e9;
     border-radius: 4px;
     padding: 10px;
     text-align: center;
     color: #fff;
-    box-shadow: 0 3px #3f20ee;
-    opacity: 0.8;
+    box-shadow: 0 3px #020f86;
+    opacity: 0.9;
 }
 
 .btn_d {
@@ -74,30 +76,22 @@ body {
     text-align: center;
     color: #fff;
     box-shadow: 0 3px #929407;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
-.btn_a:hover {
-    opacity: 1;
-}
 .btn_b:hover {
     opacity: 1;
-}
-.btn_d:hover {
-    opacity: 1;
-}
-
-.btn_a:active {
-    animation: small 1s; 
-    box-shadow: 0 2px 0 #006633;
 }
 
 .btn_b:active {
     animation: small 1s; 
-    box-shadow: 0 2px 0 #3f20ee;
+    box-shadow: 0 2px 0 #010b66;
  }
+.btn_d:hover {
+    opacity: 1;
+}
 
- .btn_d:active {
+.btn_d:active {
     animation: small 1s; 
     box-shadow: 0 2px 0 #929407;
  }
