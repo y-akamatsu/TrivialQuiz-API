@@ -1,8 +1,7 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
-const resetButton = document.getElementById("reset");
 const resultAnswer = document.getElementById("result");
-const checkAnswer = document.getElementById("check");
+const resetButton = document.getElementById("reset").style.display = "none";
 const questionNumber = document.getElementById("question_number");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
@@ -10,8 +9,6 @@ const questionNumber = document.getElementById("question_number");
 //1件目のデータを問題に使う
 let currentQuestionIndex = 0;
 let numCorrect = 0;
-
-
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
 function setQuestion() {
@@ -38,6 +35,7 @@ function setQuestion() {
   });
   const numQuestion = currentQuestionIndex + 1;
   questionNumber.innerHTML = `Question No.${numQuestion}`;
+
 }
 
 function arrShuffle(answers) {
@@ -73,7 +71,7 @@ function selectAnswer(event) {
     numCorrect++;
     alert('correct!');
   } else {
-    alert('in correct!');
+    alert('incorrect!');
   }
   //次の問題へ
   currentQuestionIndex++;
@@ -98,15 +96,13 @@ function resetQuestion() {
 
 function resultQuestion() {
   resultAnswer.innerHTML = `you had ${numCorrect} correct answers out of ${results.length} questions`;
+  document.getElementById("reset").style.display = "block";
+  document.getElementById("reset").addEventListener('click', resetQuestion);
 }
-
 //変数.addEventListener('イベント名', 関数);
-checkAnswer.addEventListener('click', () => {
-  resultQuestion();
-})
-
 //addEventListenerのクリックアクションでresetQuestionを呼び出す。
-resetButton.addEventListener('click', resetQuestion);
 window.addEventListener('load', () => {
   resetQuestion();
 });
+
+

@@ -64,17 +64,6 @@ body {
     opacity: 0.8;
 }
 
-.btn_c {
-    cursor: pointer;
-    background-color: #f58709;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 3px #8f5305;
-    opacity: 0.8;
-}
-
 .btn_d {
     display:block;
     width: 480px;
@@ -94,9 +83,6 @@ body {
 .btn_b:hover {
     opacity: 1;
 }
-.btn_c:hover {
-    opacity: 1;
-}
 .btn_d:hover {
     opacity: 1;
 }
@@ -109,12 +95,6 @@ body {
 .btn_b:active {
     animation: small 1s; 
     box-shadow: 0 2px 0 #3f20ee;
- }
-
- .btn_c:active {
-    animation: small 1s; 
-    box-shadow: 0 3px;
-    box-shadow: 0 2px 0 #8f5305;
  }
 
  .btn_d:active {
