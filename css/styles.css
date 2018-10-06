@@ -13,6 +13,11 @@ body {
     margin: 10px auto;
     text-align: center;
 }
+#question_number{
+    font-size: 20px;
+    font-family: Verdana, sans-serif;
+    margin-bottom: 10px;
+}
 
 #mondai {
     text-align: center;
@@ -42,15 +47,10 @@ body {
     background-color: #f8f8f8;
 }
 
-.btn_a {
-    cursor: pointer;
-    background-color: #008000;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 3px #006633;
-    opacity: 0.8;
+#result {
+    font-size: 30px;
+    color: #0bec31;
+    margin-bottom: 10px;
 }
 
 .btn_b {

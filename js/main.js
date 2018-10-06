@@ -1,9 +1,9 @@
 const questionElement = document.getElementById("mondai");
 const answersElement = document.getElementById('answers');
-const nextButton = document.getElementById("btn");
 const resetButton = document.getElementById("reset");
 const resultAnswer = document.getElementById("result");
 const checkAnswer = document.getElementById("check");
+const questionNumber = document.getElementById("question_number");
 
 //変数constは再代入不可、基本的にcosntを使用。letは再代入可能
 //次の問題を選択するときは＋１する
@@ -11,10 +11,12 @@ const checkAnswer = document.getElementById("check");
 let currentQuestionIndex = 0;
 let numCorrect = 0;
 
+
 //fecthのresultsの値を格納する（問題リストがはいる）
 let results = [];
 function setQuestion() {
   if (results.length <= currentQuestionIndex) {
+    alert('check the answers');
     resultQuestion();
     return;
   }
@@ -34,6 +36,8 @@ function setQuestion() {
     liElement.innerHTML = answer;
     liElement.addEventListener('click', selectAnswer);
   });
+  const numQuestion = currentQuestionIndex + 1;
+  questionNumber.innerHTML = `Question No.${numQuestion}`;
 }
 
 function arrShuffle(answers) {
@@ -67,9 +71,9 @@ function selectAnswer(event) {
   const questionData = results[currentQuestionIndex];
   if (answer === questionData.correct_answer) {
     numCorrect++;
-    alert('正解！');
+    alert('correct!');
   } else {
-    alert('不正解！');
+    alert('in correct!');
   }
   //次の問題へ
   currentQuestionIndex++;
@@ -85,21 +89,18 @@ function resetQuestion() {
     .then(function (json) {
       console.log('data:', json);
       currentQuestionIndex = 0;
+      numCorrect = 0;
+      resultAnswer.innerHTML = "";
       results = json.results;
       setQuestion();
     });
 }
 
 function resultQuestion() {
-  resultAnswer.innerHTML = `${results.length}問中、${numCorrect}問正解しました！`;
+  resultAnswer.innerHTML = `you had ${numCorrect} correct answers out of ${results.length} questions`;
 }
 
 //変数.addEventListener('イベント名', 関数);
-nextButton.addEventListener('click', () => {
-  //次の問題へ
-  currentQuestionIndex++;
-  setQuestion();
-});
 checkAnswer.addEventListener('click', () => {
   resultQuestion();
 })
