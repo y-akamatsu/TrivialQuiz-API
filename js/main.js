@@ -81,7 +81,7 @@ function selectAnswer(event) {
 //resetQuestion関数定義
 //fetchにてデータを取得し問題をセット、クイズのインデックス番号を０にする
 function resetQuestion() {
-  fetch('https://opentdb.com/api.php?amount=10')
+  fetch('https://opentdb.com/api.php?amount=10&category=15')
     .then(function (response) {
       return response.json();
     })
