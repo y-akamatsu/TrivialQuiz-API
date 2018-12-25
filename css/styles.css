@@ -1,7 +1,7 @@
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #dd785a;
+    background-color: #3d856f;
 }
 .index{
     color: red;
@@ -101,8 +101,8 @@ body {
 
 .start{
     display:block;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     cursor: pointer;
     background-color: #fa0cfa;
     border-radius: 50%;
@@ -117,7 +117,7 @@ body {
 
 .start:hover {
     opacity: 1;
-    background-color: #0e41e9;
+    background-color: #f348f3;
 }
 
 .start:active {
