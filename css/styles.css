@@ -1,7 +1,7 @@
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #3d856f;
+    background-color: #e1ee96;
 }
 .index{
     color: red;
@@ -101,18 +101,16 @@ body {
 
 .start{
     display:block;
-    width: 120px;
-    height: 120px;
+    width: 480px;
     cursor: pointer;
-    background-color: #fa0cfa;
-    border-radius: 50%;
-    line-height: 150px;
+    background-color: #cd12e6;
+    border-radius: 4px;
     padding: 10px;
     text-align: center;
     color: #fff;
-    box-shadow: 0 2px #5b075e;
+    box-shadow: 0 3px #81066d;
     opacity: 0.9;
-    margin: 10px auto;
+    margin: 50px auto;
 }
 
 .start:hover {
