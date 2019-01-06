@@ -1,7 +1,8 @@
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #e1ee96;
+    color: #1b1a1a;
+    background-color: #e6e4e4;
 }
 .index{
     color: red;
@@ -23,10 +24,11 @@ body {
     text-align: center;
     background: #a0e7a3;
     color: #ffffff;
-    height: 50px;
+    height: 80px;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 #answers {
@@ -36,7 +38,7 @@ body {
 }
 
 #answers > li {
-    border: 1px solid rgb(24, 24, 24);
+    border: 1px solid #141414;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 10px;
@@ -44,7 +46,7 @@ body {
 
 #answers > li:hover {
     cursor: pointer;
-    background-color: #f8f8f8;
+    background-color: #f1f1f1;
 }
 
 #result {
@@ -71,12 +73,12 @@ body {
     display:block;
     width: 480px;
     cursor: pointer;
-    background-color: #e68a12;
+    background-color: #1ea9b3;
     border-radius: 4px;
     padding: 10px;
     text-align: center;
     color: #fff;
-    box-shadow: 0 3px #97711e;
+    box-shadow: 0 3px #08868f;
     opacity: 0.9;
 }
 
